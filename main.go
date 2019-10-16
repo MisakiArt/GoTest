@@ -13,7 +13,7 @@ func main() {
 
 // handler echoes the Path component of the request URL r.
 func callback(w http.ResponseWriter, r *http.Request) {
-	query := request.URL.Query()
+	query := Request.URL.Query()
 	mid := query.Get("mid")
 	signature := query.Get("signature")
 	timestamp := query.Get("timestamp")
