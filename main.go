@@ -18,5 +18,5 @@ func callback(w http.ResponseWriter, r *http.Request) {
 	signature := query.Get("signature")
 	timestamp := query.Get("timestamp")
 	nonce := query.Get("nonce")
-	fmt.Printf("GET: mid=%s </br> signature = %s </br> timestamp = %s </br> nonce = %s ", mid,signature,timestamp,nonce)
+	fmt.Fprintf(w,"GET: mid=%s </br> signature = %s </br> timestamp = %s </br> nonce = %s ", mid,signature,timestamp,nonce)
 }
