@@ -7,11 +7,16 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", handler) // each request calls handler
+	http.HandleFunc("/callBack",callback)
 	log.Fatal(http.ListenAndServe("107.173.26.195:8000", nil))
 }
 
 // handler echoes the Path component of the request URL r.
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
+func callback(w http.ResponseWriter, r *http.Request) {
+	query := request.URL.Query()
+	mid := query.Get("mid")
+	signature := query.Get("signature")
+	timestamp := query.Get("timestamp")
+	nonce := query.Get("nonce")
+	fmt.Printf("GET: mid=%s </br> signature = %s </br> timestamp = %s </br> nonce = %s ", mid,signature,timestamp,nonce)
 }
