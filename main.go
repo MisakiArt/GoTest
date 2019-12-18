@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/logger"
+	//"github.com/kataras/iris/middleware/logger"
 	"github.com/kataras/iris/middleware/recover"
 	"github.com/kataras/iris/mvc"
 )
@@ -12,6 +13,11 @@ func main() {
 	app.Use(recover.New())
 	app.Use(logger.New())
 	mvc.New(app).Handle(new(ExampleController))
+
+	//app.Get("/lowercase/{name:string regexp(^[a-z]+) else 504}", func(ctx iris.Context) {
+	//	_,_= ctx.Writef("name should be only lowercase, otherwise this handler will never executed: %v", ctx.Params())
+	//})
+	//app.Configure(counter.Configurator)
 	_=app.Run(iris.Addr("localhost:8080"))
 
 
@@ -68,3 +74,4 @@ func (c *ExampleController) GetHello() interface{} {
 
 	return map[string]string{"message": "Hello Iris!"}
 }
+
